@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Shield | Phishing Detector & Awareness Portal</title>
+    <style>
+        /* CSS STYLING */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #cbd5e1;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #334155;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #06b6d4;
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            color: #38bdf8;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        .section {
+            background: #0f172a;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #334155;
+        }
+
+        h2 {
+            color: #06b6d4;
+            margin-bottom: 15px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p.description {
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 14px;
+            background: #1e293b;
+            border: 2px solid #475569;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #06b6d4;
+            outline: none;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+        }
+
+        button {
+            background: #06b6d4;
+            color: #0f172a;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #38bdf8;
+        }
+
+        /* Result Styles */
+        .result-box {
+            margin-top: 15px;
+            padding: 20px;
+            border-radius: 6px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .safe {
+            background: rgba(6, 95, 70, 0.3);
+            color: #34d399;
+            border: 1px solid #059669;
+        }
+
+        .danger {
+            background: rgba(127, 29, 29, 0.4);
+            color: #f87171;
+            border: 1px solid #dc2626;
+        }
+
+        /* Awareness List Styles */
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #1e293b;
+            border-radius: 6px;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .tips-list li strong {
+            color: #38bdf8;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #64748b;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🛡️ Cyber Shield Portal</h1>
+        <p>GTU SBTP - 2026 | Phishing Detection & Cyber Awareness Utility</p>
+    </header>
+
+    <div class="section">
+        <h2>🔍 1. Live URL / Link Scanner</h2>
+        <p class="description">Paste any suspicious link (URL) you received via Email, SMS, or WhatsApp into the box below to scan it:</p>
+        
+        <div class="input-group">
+            <input type="text" id="urlInputField" placeholder="Paste your link here (e.g., http://free-crypto-bonus.com)...">
+            <button onclick="analyzeLink()">Scan Link</button>
+        </div>
+
+        <div id="detectionOutput" class="result-box"></div>
+    </div>
+
+    <div class="section">
+        <h2>💡 2. Essential Cyber Security Tips</h2>
+        <ul class="tips-list">
+            <li>
+                <strong>🔐 Multi-Factor Authentication (MFA)</strong>
+                Always enable Two-Factor Verification (2FA) on your Email, Instagram, and Banking accounts. Even if your password is stolen, your account remains secure.
+            </li>
+            <li>
+                <strong>🌐 Verify HTTP vs HTTPS</strong>
+                Whenever you open a website, check if it starts with 'https://' and displays a Padlock symbol. Never enter personal details on websites that use only 'http://'.
+            </li>
+            <li>
+                <strong>⚠️ Beware of Urgency Scams</strong>
+                Messages creating fear and panic—such as "Your SIM card will be blocked" or "Your electricity connection will be disconnected tonight"—demanding immediate link clicks are always fraudulent.
+            </li>
+            <li>
+                <strong>🛑 Fake Lotteries and Free Gift Links</strong>
+                Phishing links claiming "You won a $10,000 lottery" or offering "Free high-end smartphones" are traps designed to hack your phone or drain your bank account.
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>Developed for GTU SBTP - Subject Code: DI05000011 | VPMP Polytechnic</p>
+    </footer>
+</div>
+
+<script>
+    // JAVASCRIPT LOGIC
+    function analyzeLink() {
+    const urlInput = document.getElementById("urlInputField").value.trim();
+    const outputDiv = document.getElementById("detectionOutput");
+
+    if (urlInput === "") {
+        alert("Please enter a URL.");
+        return;
+    }
+
+    let isFlagged = false;
+    let reasons = [];
+
+    const url = urlInput.toLowerCase();
+
+    // Check HTTP
+    if (url.startsWith("http://")) {
+        isFlagged = true;
+        reasons.push("Uses insecure HTTP instead of HTTPS.");
+    }
+
+    // Suspicious Keywords
+    const keywords = [
+        "login",
+        "verify",
+        "update",
+        "bank",
+        "gift",
+        "free",
+        "win",
+        "lottery",
+        "bonus",
+        "crypto",
+        "reward",
+        "paypal",
+        "amazon",
+        "paytm",
+        "cashback"
+    ];
+
+    keywords.forEach(word => {
+        if (url.includes(word)) {
+            isFlagged = true;
+            reasons.push(`Suspicious keyword found: "${word}"`);
+        }
+    });
+
+    // URL Shorteners
+    const shorteners = [
+        "bit.ly",
+        "tinyurl.com",
+        "t.co",
+        "goo.gl",
+        "ow.ly",
+        "is.gd",
+        "cutt.ly",
+        "rebrand.ly"
+    ];
+
+    shorteners.forEach(site => {
+        if (url.includes(site)) {
+            isFlagged = true;
+            reasons.push("Shortened URL detected.");
+        }
+    });
+
+    // IP Address Check
+    const ipRegex = /https?:\/\/(\d{1,3}\.){3}\d{1,3}/;
+
+    if (ipRegex.test(url)) {
+        isFlagged = true;
+        reasons.push("Website uses an IP address instead of a domain.");
+    }
+
+    // @ Symbol
+    if (url.includes("@")) {
+        isFlagged = true;
+        reasons.push("@ symbol detected.");
+    }
+
+    // Too Long URL
+    if (url.length > 100) {
+        isFlagged = true;
+        reasons.push("URL is unusually long.");
+    }
+
+    // Too Many Dots
+    const dotCount = (url.match(/\./g) || []).length;
+
+    if (dotCount > 3) {
+        isFlagged = true;
+        reasons.push("Too many subdomains detected.");
+    }
+
+    // Hyphen Check
+    if (url.includes("-")) {
+        reasons.push("Hyphen found in domain (common in phishing sites).");
+    }
+
+    // Display Result
+    outputDiv.style.display = "block";
+
+    if (isFlagged) {
+        outputDiv.className = "result-box danger";
+        outputDiv.innerHTML = `
+            <strong>⚠ Warning! Possible Phishing Link</strong>
+            <br><br>
+            <strong>Detected Issues:</strong>
+            <ul>
+                ${reasons.map(r => `<li>${r}</li>`).join("")}
+            </ul>
+            <br>
+            <strong>Recommendation:</strong> Do not enter passwords, OTPs, or banking details on this website.
+        `;
+    } else {
+        outputDiv.className = "result-box safe";
+        outputDiv.innerHTML = `
+            <strong>✅ No obvious phishing signs detected.</strong>
+            <br><br>
+            This link passed our basic security checks.
+            <br><br>
+            <b>Note:</b> This is a heuristic scan only. Always verify unknown websites before entering personal information.
+        `;
+    }
+}
+</script>
+
+</body>
+</html>
